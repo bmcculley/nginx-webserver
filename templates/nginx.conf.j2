@@ -1,0 +1,10 @@
+server {
+       listen {{ web_server_port }};
+       listen [::]:{{ web_server_port }};
+       server_name {{ web_server_name }};
+       root {{ nginx_server_directory }};
+       index index.html;
+       location / {
+               try_files $uri $uri/ =404;
+       }
+}

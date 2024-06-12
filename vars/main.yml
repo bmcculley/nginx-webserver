@@ -1,0 +1,7 @@
+---
+# vars file for nginx-webserver
+web_server_port: 80
+web_server_name: example.com
+web_server_config_name: examplecom
+nginx_version: 1.22.0-1ubuntu3 
+nginx_server_directory: /var/www/{{ web_server_name }}
