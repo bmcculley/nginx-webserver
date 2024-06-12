@@ -6,12 +6,10 @@
     cache_valid_time: 3600
     upgrade: yes
 
-
 - name: "Install Nginx to version {{ nginx_version }}"
   apt:
     name: "nginx={{ nginx_version }}"
     state: present
-
 
 - name: Copy the Nginx configuration file to the host
   template:
@@ -24,7 +22,6 @@
     src: "/etc/nginx/sites-available/{{ web_server_config_name }}"
     state: link
 
-
 - name: Create Nginx directory
   ansible.builtin.file:
     path: "{{ nginx_server_directory }}"
@@ -32,10 +29,10 @@
     owner: www-data
     group: www-data
 
-
 - name: Copy index.html to the Nginx directory
   copy:
     src: files/index.html
     dest: "{{ nginx_server_directory }}/index.html"
     owner: www-data
     group: www-data
+  notify: Reload the Nginx service
